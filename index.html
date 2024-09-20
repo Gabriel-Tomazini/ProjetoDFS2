@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil do Instagram</title>
+    <link rel="stylesheet" href="CSS/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Meu Instagram</h1>
+            <div id="userArea">
+                <!-- Área de login/cadastro -->
+                <div id="authForm">
+                    <input type="text" id="username" placeholder="Usuário" required>
+                    <input type="password" id="password" placeholder="Senha" required>
+                    <button id="loginBtn">Login</button>
+                    <button id="registerBtn">Registrar</button>
+                </div>
+                <div id="loggedInUser" style="display: none;">
+                    <p>Bem-vindo, <span id="loggedInUsername"></span>!</p>
+                    <button id="logoutBtn">Logout</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Mesmo conteúdo de perfil e posts -->
+        <section class="profile">
+            <div class="profile-header">
+                <div class="profile-picture">
+                    <img src="https://www.pedigree.com.br/cdn-cgi/image/format=auto,q=90/sites/g/files/fnmzdf2401/files/2022-04/hero-icon-Savannah_0.png" alt="Foto de perfil">
+                </div>
+                <div class="profile-info">
+                    <h2 id="profileName">Visitante</h2>
+                    <p>@guest</p>
+                </div>
+            </div>
+        </section>
+
+
+    <section class="add-post">
+        <h2>Adicionar Publicação</h2>
+        <form id="postForm">
+            <label for="postTitle">Título:</label>
+            <input type="text" id="postTitle" name="title" required>
+
+            <label for="postImage">URL da Imagem:</label>
+            <input type="url" id="postImage" name="image" required>
+
+            <label for="postDescription">Descrição:</label>
+            <textarea id="postDescription" name="description" rows="4" required></textarea>
+
+            <button type="submit">Adicionar Post</button>
+        </form>
+    </section>
+
+    <section class="posts">
+        <h2>Posts</h2>
+        <div id="postList" class="post-list">
+            <!-- Posts serão adicionados aqui dinamicamente -->
+        </div>
+    </section>
+</main>
+
+    <footer>
+        <p>© 2024 Seu Nome. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="JS/script.js"></script>
+</body>
+</html>
