@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     const postForm = document.getElementById('postForm');
     const postList = document.getElementById('postList');
+    const imageInput = document.getElementById('postImage');
+    const imagePreview = document.getElementById('imagePreview');
     const loginBtn = document.getElementById('loginBtn');
     const registerBtn = document.getElementById('registerBtn');
     const logoutBtn = document.getElementById('logoutBtn');
@@ -113,6 +115,22 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('posts', JSON.stringify(posts));
     }
 
+    // Atualiza a pré-visualização da imagem quando o usuário seleciona uma
+    imageInput.addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                imagePreview.src = e.target.result;
+                imagePreview.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+        } else {
+            imagePreview.src = '';
+            imagePreview.style.display = 'none';
+        }
+    });
+
     // Login
     loginBtn.addEventListener('click', () => {
         const username = usernameField.value;
@@ -171,24 +189,32 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const title = document.getElementById('postTitle').value;
-        const image = document.getElementById('postImage').value;
         const description = document.getElementById('postDescription').value;
+        const imageFile = imageInput.files[0];
 
-        const post = {
-            id: Date.now(),
-            title,
-            image,
-            description,
-            username: currentUser.username, // Associar post ao usuário logado
-            likes: 0,
-            likedBy: [] // Lista de usuários que curtiram o post
+        if (!imageFile) {
+            alert('Por favor, selecione uma imagem.');
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            const post = {
+                id: Date.now(),
+                title,
+                image: e.target.result, // Usa a URL da imagem carregada
+                description,
+                username: currentUser.username, // Associar post ao usuário logado
+                likes: 0,
+                likedBy: [] // Lista de usuários que curtiram o post
+            };
+
+            savePostToStorage(post);
+            postForm.reset();
+            imagePreview.style.display = 'none'; // Oculta a pré-visualização após o envio
         };
 
-        // Salvar post no localStorage
-        savePostToStorage(post);
-
-        // Limpar o formulário após o envio
-        postForm.reset();
+        reader.readAsDataURL(imageFile);
     });
 
     // Carregar posts existentes do localStorage

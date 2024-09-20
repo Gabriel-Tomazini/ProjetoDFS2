@@ -26,12 +26,14 @@
         </div>
     </header>
 
+    <BR>    </BR>
+
     <main>
         <!-- Mesmo conteúdo de perfil e posts -->
         <section class="profile">
             <div class="profile-header">
                 <div class="profile-picture">
-                    <img src="https://www.pedigree.com.br/cdn-cgi/image/format=auto,q=90/sites/g/files/fnmzdf2401/files/2022-04/hero-icon-Savannah_0.png" alt="Foto de perfil">
+                    <img src="Imagens/Guest.png" alt="Foto de perfil">
                 </div>
                 <div class="profile-info">
                     <h2 id="profileName">Visitante</h2>
@@ -47,8 +49,10 @@
             <label for="postTitle">Título:</label>
             <input type="text" id="postTitle" name="title" required>
 
-            <label for="postImage">URL da Imagem:</label>
-            <input type="url" id="postImage" name="image" required>
+            <label for="postImage">Selecione uma Imagem:</label>
+            <input type="file" id="postImage" name="image" accept="image/*" required>
+            <img id="imagePreview" src="" alt="Pré-visualização da imagem" style="display:none; max-width: 200px;">
+
 
             <label for="postDescription">Descrição:</label>
             <textarea id="postDescription" name="description" rows="4" required></textarea>
@@ -66,7 +70,7 @@
 </main>
 
     <footer>
-        <p>© 2024 Seu Nome. Todos os direitos reservados.</p>
+        <p>© 2024 Gabriel Tomazini. Todos os direitos reservados.</p>
     </footer>
 
     <script src="JS/script.js"></script>
